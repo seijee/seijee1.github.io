@@ -43,7 +43,7 @@
 	</style>
 	</head>
 	
-	<body onclick="function(){ document.getElementById('newInput').click(); }">
+	<body >
 		<div  data-ng-app="Console" data-ng-controller="consoleController">
 			<b style="font-size:1em;
 			font-weight: 900;">
@@ -64,6 +64,12 @@
 		</div>
 		
 		<script>
+		$(document).ready(function(){
+	//$('body').click(function(e){ $('newInput').focus(); });
+        $('body').click(function(e){
+            $('#newInput').trigger('click');
+        	})
+	})
 var app = angular.module('Console', ['ngSanitize']);
 app.controller('consoleController',['$scope','$sce', function($scope) {
 	$scope.userName = "seijee: ~ $ ";
