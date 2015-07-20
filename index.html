@@ -68,6 +68,9 @@
 			alert('test');
 			document.getElementById('newInput').click(); 
 		}
+		document.getElementById("newInput").addEventListener("click", function(event){
+    			event.preventDefault();
+		});
 var app = angular.module('Console', ['ngSanitize']);
 app.controller('consoleController',['$scope','$sce', function($scope) {
 	$scope.userName = "seijee: ~ $ ";
