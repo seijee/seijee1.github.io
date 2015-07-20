@@ -69,7 +69,8 @@
 			document.getElementById('newInput').click(); 
 		}
 		document.getElementById("newInput").addEventListener("click", function(event){
-    			event.preventDefault();
+    			//window.event.cancelBubble = true;
+    			event.stopPropagation();
 		});
 var app = angular.module('Console', ['ngSanitize']);
 app.controller('consoleController',['$scope','$sce', function($scope) {
