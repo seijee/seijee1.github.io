@@ -1,0 +1,95 @@
+<html>
+	<head>
+	<title>My Angular App</title>
+    <!--script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script-->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.16/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.16/angular-sanitize.js"></script>
+  
+	<style>
+		body{
+			background-color:#333333;
+			color: #66FF33;
+			font-family: "Trebuchet MS", Helvetica, sans-serif;
+			font-size:0.95em;
+			font-weight: 550;
+		}
+		#input{
+			white-space: pre-wrap;
+		}
+		.invisible{
+			height:0px;width: 0px; color:transparent; border-color:transparent; overflow:hidden;
+		}
+		#cursor{
+			width: 0.6em; height:3px; margin-bottom:-0.2em;
+			display:inline-block;
+			-webkit-animation: blink 0.8s none 0s infinite; /* Chrome, Safari, Opera */
+			animation: blink 0.8s none 0s infinite;
+		}
+/* Chrome, Safari, Opera */
+@-webkit-keyframes blink {
+    0%   {background-color:#66FF33;}
+    59%   {background-color:#66FF33;}
+    60%   {background-color:transparent;}
+    100%   {background-color:transparent;}
+}
+
+/* Standard syntax */
+@keyframes blink {
+    0%   {background-color:#66FF33;}
+    59%   {background-color:#66FF33;}
+    60%   {background-color:transparent;}
+    100%   {background-color:transparent;}
+}
+	</style>
+	</head>
+	
+	<body onload="setInterval(function(){ document.getElementById('newInput').focus(); }, 50);">
+		<div  data-ng-app="Console" data-ng-controller="consoleController">
+			<b style="font-size:1em;
+			font-weight: 900;">
+			========================================================<br/>
+			Hello World!<br/>
+			Type "help" and press return (enter) to get more info<br/>
+			========================================================
+			</b><br/>
+			<span ng-repeat="record in history" >
+				{{userName + record.cmd}}<br/>
+				<span ng-bind-html="getHTML(record.result)"></span>
+			</span>
+			<span id="input">{{userName + newInput }}</span><span id="cursor"></span>
+		<form class="invisible" data-ng-submit="submit()">
+			<input autocomplete="off" type="text" id="newInput" class="invisible" data-ng-trim="false" data-ng-model="newInput" autofocus/>
+			<button id="submit" type="submit" value="adsf" >adsf</button>
+		</form>
+		</div>
+		
+		<script>
+var app = angular.module('Console', ['ngSanitize']);
+app.controller('consoleController',['$scope','$sce', function($scope) {
+	$scope.userName = "seijee: ~ $ ";
+	$scope.history =[];
+	//$scope.count = 0;
+    $scope.submit = function (){
+		$scope.newInput = $scope.newInput.trim();
+		if ($scope.newInput != '' && $scope.newInput!=null || true) {
+			var result;
+			switch ($scope.newInput){
+				case '':
+				case 'help': result = '';
+				break;
+				default: result = 'Invalid command<br/>';
+			}
+			$scope.history.push(  {'cmd': $scope.newInput , 'result': result} );
+			if ($scope.newInput == 'clear'){
+				$scope.history =[];
+			}
+			$scope.newInput = '';
+		}
+	};
+	$scope.getHTML = function (x){
+		return x;
+	}
+}]);
+</script>
+	</body>
+</html>
