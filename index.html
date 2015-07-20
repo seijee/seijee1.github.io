@@ -17,6 +17,7 @@
 			white-space: pre-wrap;
 		}
 		.invisible{
+			width:0px;
 			color:transparent; border-color:transparent;
 			background-color: transparent;
 		}
@@ -58,9 +59,9 @@
 				<span ng-bind-html="getHTML(record.result)"></span>
 			</span>
 			<span id="input">{{userName + newInput }}</span><span id="cursor"></span>
-		<form class="invisible" data-ng-submit="submit()">
+		<form class="" data-ng-submit="submit()">
 			<input autocomplete="off" type="text" id="newInput" class="invisible" data-ng-trim="false" data-ng-model="newInput" autofocus/>
-			<button id="submit" type="submit" value="adsf" >adsf</button>
+			<button class="invisible" id="submit" type="submit" value="adsf" >adsf</button>
 		</form>
 		</div>
 		
