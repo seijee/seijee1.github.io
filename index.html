@@ -80,6 +80,10 @@
 
 <body onclick="focusOnInput()">
     <div data-ng-app="Console" data-ng-controller="consoleController">
+        <form class="" data-ng-submit="submit()">
+            <input autocomplete="off" type="text" id="newInput" class="invisible" data-ng-trim="false" data-ng-model="newInput" autofocus />
+            <button class="invisible" id="submit" type="submit" value="adsf">adsf</button>
+        </form>
         <div id="console">
             <b style="font-size:1em;
 			font-weight: 900;">
@@ -94,10 +98,6 @@
             </span>
             <span id="input">{{userName + newInput }}</span><span id="cursor"></span>
         </div>
-        <form class="" data-ng-submit="submit()">
-            <input autocomplete="off" type="text" id="newInput" class="invisible" data-ng-trim="false" data-ng-model="newInput" autofocus />
-            <button class="invisible" id="submit" type="submit" value="adsf">adsf</button>
-        </form>
     </div>
 
     <script>
